@@ -67,5 +67,5 @@ def errorhandler_500(err):
 
 if __name__ == '__main__':
     # 启动一个本地开发服务器，激活该网页
-    app.run()
+    app.run(port=8081)
     # app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,3 +1,5 @@
+from abc import ABC
+
 from flask import Flask, request, render_template, views, typing as ft
 
 app = Flask(__name__)
