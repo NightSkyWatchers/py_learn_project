@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 过滤器的使用 -->
+<!-- 全大写 -->
+{{ 'hello_world' | upper }}
+<br>
+<!-- 单词首字母大写 -->
+{{ 'hello world' | title }}
+<br>
+<!-- 替换左边的内容为右边的内容 -->
+{{ 'hello_world' | replace('hello','hi') }}
+<br>
+<!-- 调用自定义的过滤器 -->
+mylist列表：{{ user | reverse }}
+</body>
+</html>
+

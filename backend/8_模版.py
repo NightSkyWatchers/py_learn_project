@@ -13,5 +13,10 @@ def index():
     # 前端html模板内需要在双括号{{}} 中使用该变量：
     return render_template('模版/index.html',data=data)
 
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

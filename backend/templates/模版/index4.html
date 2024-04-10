@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for</title>
+</head>
+<body>
+
+<ul>
+    {% for item in users %}
+    <p> {{item}} </p>
+     {% endfor %}
+</ul>
+
+
+<ul>
+{% for item in users %}
+	<li>{{ item }}</li>
+	<li>当前的索引是：{{ loop.index }}</li>
+	<li>当前的索引是：{{ loop.index0 }}</li>
+	<li>当前是否是第一次迭代：{{ loop.first }}</li>
+	<li>当前是否是最后一次迭代：{{ loop.last }}</li>
+	<li>前序列的长度：{{ loop.length }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

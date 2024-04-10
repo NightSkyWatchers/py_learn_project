@@ -1,0 +1,40 @@
+<!-- 不带参数的宏定义, 像定义一个函数一样 -->
+{% macro input1() %}
+    <!-- 宏内执行的操作，生成一个input表单项 -->
+    <label>表单项1：
+        <input type="text" name='username' value=''>
+        <br>
+    </label>
+{% endmacro %}
+
+<!-- 带参数的宏定义，在括号添加参数和默认值 -->
+{% macro input2(name, value='', type='text', size=30) %}
+    <!-- 同样是宏内执行的操作，生成一个input表单项 -->
+    <!-- 此处双括号内的参数，指向我们在定义时设定的参数，调用时没有传值就使用设定的默认值 -->
+    <label>表单项2：
+        <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}">
+        <br>
+    </label>
+{% endmacro %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 使用1, 相当于调用一个函数一样 -->
+{{ input1() }}
+
+<!-- 使用2 -->
+{{ input2() }}   <!--name不指定， 则name="", 即和value一样也是空-->
+<!-- 或者 -->
+{{ input2('username') }}
+<!-- 或者 -->
+{{ input2('username', value='cheng', type='password', size=50) }}
+
+</body>
+</html>
