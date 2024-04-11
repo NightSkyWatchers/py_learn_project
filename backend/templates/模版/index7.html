@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p> 导入方式1：import 模板文件名 as 别名</p>
+
+{% import '模版/index6.html' as index6 %}
+
+<div>
+		<!-- 调用导入的宏模板文件中的宏，实现登录页面构建 -->
+		<p>用户名：{{index6.input2('username')}}</p>
+		<p>密码：{{index6.input2('password',type='password')}}</p>
+		<p>登录：{{index6.input2('submit',type='submit',value='登录')}}</p>
+	</div>
+
+
+<p> 导入方式2：from 模板文件名 import 宏名称</p>
+{% from '模版/index6.html' import input2 %}
+<div>
+	<p> 用户名：{{input2('username')}}</p>
+	<p> 密码： {{input2('password',type='passwrod')}}</p>
+	<p> 登录： {{ input2('submit',type='submit',value='登录')}}</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% set phone=110 %}
+    {% set name='警察' %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<H4> set定义全局变量 </H4>
+
+    <p> {{phone}}</p>
+    <p> {{name}}</p>
+
+<h5> with定义局部变量 </h5>
+
+ {% with phone=119 %}
+    <p> phone {{phone}}</p>
+ {% endwith %}
+
+</body>
+</html>

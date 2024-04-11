@@ -68,5 +68,73 @@ def index6():
     return render_template('/模版/index6.html', **locals())
 
 
+@app.route('/macro1')
+def index7():
+    # 宏的导入可以使用语句import 模板文件名 as 别名或from 模板文件名 import 宏名称，就像python中库和包的导入一样；
+    # 我们将宏单独定义在一个html模板文件中后，就可以通过导入这个模板文件来调用里面的所有宏，导入过程同样在{% %}中进行，调用过程在{{ }}在进行。
+
+    return render_template('/模版/index7.html', **locals())
+
+
+
+@app.route('/include')
+def index8():
+    # include用于在一个模板的指定位置导入另一个模板的内容，
+    # 区别于宏的调用，include更像从另一个模板“复制+粘贴”；
+    # include同样在{% %}中使用，采用语句{% include 模块名 %}
+    #include是直接将目标模板中的所有内容直接“copy”在当前位置，
+    # 所以被导入的模板如果有head和body部分也将被导入过来；
+    #include和import都是在templates这个目录下搜索的，
+    # 所以使用路径时不需要添加相对路径：上级目录 “ …/ ” 和当前目录 “ ./ ” ；
+    name = '张三'
+    return render_template('/模版/index8.html', **locals())
+
+
+
+@app.route('/setwith')
+def index9():
+    # set——自定义全局变量：由set定义的变量可以在模板内任意一个地方调用，甚至在子模板中也可以使用；
+    # with——自定义局部变量：with定义的变量只能在{% with %}到{% endwith %}这个代码块间使用；
+    return render_template('/模版/index9.html')
+
+
+@app.route('/static')
+def index10():
+    # 静态文件一般是我们在开发过程中用到的图片文件、css文件和js文件，
+    # 在Flask工程中通常包含一个static文件目录，
+    # 当需要调用静态文件是将会默认在该目录下进行查询，固不需要使用相对路径；
+    # 通常我们会在static文件目录下定义名为css、image和js的文件夹分别存储这些静态文件；
+    # 加载静态文件通常配合url_for函数使用(需要在双括号内调用)，
+    # 将模板标签的src、herf属性通过url_for(静态文件名称)设置为反转url要比使用相对路径更好。
+
+    return render_template('/模版/index10.html')
+
+
+@app.route('/extend')
+def index11():
+    #而在extends中，我们当前的模板则是待装载的代码块，
+    # 需要我们继承一个框架来搭载这些代码块，
+    # 这时候就需要extend来导入框架（基类）模块了；
+    return render_template('/模版/extend/father.html')
+
+
+@app.route('/extend1')
+def index12():
+    #   在继承操作中，如果子模板实现了父模板的某个block，
+    #   那么子模板中该block的代码就会覆写父模板中的代码，
+    #   如果我们在子模板中仍然想保留父模板的代码，
+    #   可以使用super()方法实现。
+    return render_template('/模版/extend/son1.html')
+
+
+@app.route('/extend2')
+def index13():
+    #而在extends中，我们当前的模板则是待装载的代码块，
+    # 需要我们继承一个框架来搭载这些代码块，
+    # 这时候就需要extend来导入框架（基类）模块了；
+    return render_template('/模版/extend/son2.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

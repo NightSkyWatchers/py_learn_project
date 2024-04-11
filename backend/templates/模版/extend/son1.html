@@ -1,0 +1,12 @@
+<!--继承的父类模板文件名称-->
+{% extends "/模版/extend/father.html" %}
+<!--插入到父类代码的title区块的内容-->
+{% block title %}
+    网站首页
+{% endblock %}
+<!--插入到父类代码的body区块的内容-->
+{% block body %}
+	<!--保留父模板该block中原本的内容-->
+    {{ super() }}
+    <h4>这是网站首页的内容！</h4>
+{% endblock %}
