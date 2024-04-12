@@ -39,8 +39,11 @@ if __name__ == '__main__':
     while True:
         # d.click(0.907, 0.822)
         d.click(0.918, 0.909)
+        s = random.random()
+        time.sleep(s*0.5)
+        # print(f'睡眠{s}s')
         t += 1
         if t % 50 == 0:
-            t2 = random.randint(1, 2)
+            t2 = random.randint(1, 5)
             time.sleep(t2)
             print(f'已点赞{t}次，休眠{t2}s')

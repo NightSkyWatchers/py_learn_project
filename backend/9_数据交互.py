@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo
 
@@ -68,6 +68,16 @@ def  index2():
             print(form.errors['password'])
             print(form.password.errors)
             return render_template('/form/index2.html', form=form)
+
+
+
+# --------------视图函数------------------
+@app.route('/index3', methods=['GET', 'POST'])
+def index3():
+    if request.method == 'GET':
+        flash('用户名或密码不正确,请检查!')
+        return render_template("/form/index3.html")
+
 
 
 @app.route('/', methods=['GET', 'POST'], endpoint='index')
