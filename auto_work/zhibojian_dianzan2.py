@@ -7,12 +7,12 @@ import uiautomator2 as u2
 
 # 红米测试设备 fa5lifgiba6tbaug
 
-address = 'fa5lifgiba6tbaug'
+address = '9ec0da0b'
 # OPPO R9测试设备 9ec0da0b ,
-addr_input = input('请选择设备id:(可选9ec0da0b和fa5lifgiba6tbaug)')
-
-if len(addr_input.strip()) > 0:
-    address = addr_input
+# addr_input = input('请选择设备id:(可选9ec0da0b和fa5lifgiba6tbaug)')
+#
+# if len(addr_input.strip()) > 0:
+#     address = addr_input
 
 d = u2.connect(addr=address)
 # 打开抖音APP
@@ -40,8 +40,7 @@ if __name__ == '__main__':
         # d.click(0.907, 0.822)
         d.click(0.918, 0.909)
         s = random.random()
-        time.sleep(s*0.5)
-        # print(f'睡眠{s}s')
+        time.sleep(s*0.3)
         t += 1
         if t % 50 == 0:
             t2 = random.randint(1, 5)
