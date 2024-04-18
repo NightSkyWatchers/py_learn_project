@@ -8,6 +8,12 @@ import uiautomator2 as u2
 # 红米测试设备 fa5lifgiba6tbaug
 
 address = '9ec0da0b'
+slow = False
+
+slow1 = input('是否慢速运行(y/n):')
+
+if slow1 == 'y':
+    slow = True
 # OPPO R9测试设备 9ec0da0b ,
 # addr_input = input('请选择设备id:(可选9ec0da0b和fa5lifgiba6tbaug)')
 #
@@ -15,6 +21,7 @@ address = '9ec0da0b'
 #     address = addr_input
 
 d = u2.connect(addr=address)
+
 # 打开抖音APP
 
 # d(text='抖音').click()
@@ -34,15 +41,21 @@ d = u2.connect(addr=address)
 
 if __name__ == '__main__':
     t = 0
+    print('start 点赞')
+
     while t >= 3000:
+        print('已达上限')
         exit(0)
     while True:
-        # d.click(0.907, 0.822)
-        d.click(0.918, 0.909)
-        s = random.random()
-        time.sleep(s*0.3)
+        d.click(0.907, 0.822)
+        # d.click(0.918, 0.909)
+        s1 = random.random() * 0.5
+        if slow or t >= 3000:
+            s1 = random.random() * 2
+
+        time.sleep(s1)
         t += 1
         if t % 50 == 0:
-            t2 = random.randint(1, 5)
-            time.sleep(t2)
-            print(f'已点赞{t}次，休眠{t2}s')
+            s2 = random.randint(1, 5)
+            time.sleep(s2)
+            print(f'已点赞{t}次，休眠{s2}s')
