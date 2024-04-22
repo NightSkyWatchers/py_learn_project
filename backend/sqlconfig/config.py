@@ -10,7 +10,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI的固定格式为：
     '{数据库管理系统名}://{登录名}:{密码}@{IP地址}:{端口号}/{数据库名}?charset={编码格式}'
     '''
-    DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf16'.format(USERNAME, PASSWORD, HOST, PORT, DATABASE)
+    DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8mb3'.format(USERNAME, PASSWORD, HOST, PORT, DATABASE)
 
     # 设置数据库的连接URI
     SQLALCHEMY_DATABASE_URI = DB_URI
