@@ -1,39 +1,35 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker, declarative_base # 1.4之前是 from sqlalchemy.ext.declarative import declarative_base
 from flask import Flask
-import pymssql
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 app = Flask(__name__)
 
-DATABASE_URL = 'mssql+pymysql://root:123456@127.0.1:3306/flaskdb'  # 或替换为 mysql+mysqlconnector
+# 或替换为 mysql+pymysql （使用 localhost 替代 127.0.1:3306）
+DATABASE_URL = "mysql+pymysql://root:admin123@localhost/db_test?charset=utf8mb4"
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_ECHO'] = True
 
-engine = create_engine(DATABASE_URL, echo=False)
-# Session = sessionmaker(bind=engine)
-# session= Session()
-
-connection = engine.connect()
-
-Base = declarative_base()
+db = SQLAlchemy(app=app)
 
 
-# 定义表模型
-class YourTable(Base):
-    __tablename__ = 'your_table'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(255), nullable=False)
-    age = Column(Integer)
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(80), unique=True)
+    pw_hash = db.Column(db.String(80))
 
 
-if __name__ == '__main__':
-    # 创建数据库（如果不存在） & 选择数据库
+with app.app_context():
+    print('=======>')
+    db.drop_all()
+    db.create_all()
 
-    # engine.execute("CREATE DATABASE IF NOT EXISTS flaskdb")
-    # engine.execute("USE flaskdb")
+    user = User(id=1, username='admin2', pw_hash='pbkdf2')
+    db.session.add(user)
+    db.session.commit()
 
-    connection.execution_options("CREATE DATABASE IF NOT EXISTS flaskdb")
-    # engine.execution_options("USE flaskdb")
 
-    # 创建表
-    Base.metadata.create_all(engine)
+
 
 
