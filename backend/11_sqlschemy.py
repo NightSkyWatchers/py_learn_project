@@ -1,6 +1,4 @@
 from datetime import datetime
-
-from django.template.defaultfilters import first
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -27,7 +25,7 @@ class Book(db.Model):
 @app.route('/')
 def index():
     # db.drop_all()
-    # db.create_all()
+    db.create_all()
     return 'create tables'
 
 @app.route('/add')
@@ -47,8 +45,8 @@ def add_record():
 @app.route('/query')
 def query_record():
     # result = db.session.query(Book.id=1).all()
-    # result = Book.query.filter(Book.id == 1).first()
-    result = Book.query.filter(Book.isbn == '9787302384496').first()
+    result = Book.query.filter(Book.id == 1).first()
+    # result = Book.query.filter(Book.isbn == '9787302384496').first()
     print(result.title)
 
     result_list = Book.query.filter(Book.publishing_office == '人民邮电出版社').all()
