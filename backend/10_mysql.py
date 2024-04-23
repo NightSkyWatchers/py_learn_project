@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import Mapped, mapped_column
 
-from sqlconfig.config import Config
+from sqlalchemy.config import Config
 
 app = Flask(__name__)
 
@@ -19,6 +19,9 @@ print(app.config)
 
 # 初始化一个SQLAlchemy对象
 db = SQLAlchemy(app)
+# db = SQLAlchemy()
+# db.app = app
+# db.init_app(app)
 
 print(db)
 
