@@ -31,7 +31,7 @@ class User(db.Model):
 
 # 使用SQLALchemy创建表book
 class Book(db.Model):
-    # __tablename__ = 'book'
+    __tablename__ = 'book'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50), nullable=False)
     author = db.Column(db.String(30), nullable=False)
